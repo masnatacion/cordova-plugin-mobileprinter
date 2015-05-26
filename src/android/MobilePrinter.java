@@ -179,7 +179,7 @@ public class MobilePrinter  extends CordovaPlugin
              String str2 = printraw(jsonArgs.getString(0), jsonArgs.getString(1));
              str1 = str2;
          }
-         catch (Exception localException)
+         catch (Exception e)
          {
            // for (;;)
            // {
