@@ -167,7 +167,8 @@ public class MobilePrinter  extends CordovaPlugin
                                JSONArray jsonArgs,  
 
       
-   public PluginResult execute(String action, JSONArray paramJSONArray,CallbackContext callbackContext)
+   public PluginResult execute(String action, JSONArray paramJSONArray,  
+      CallbackContext callbackContext)
    {
      if (action.equals("printLabel"))
      {
