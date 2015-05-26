@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+           id="com.phonegap.plugins.mobileprinter"
+      version="0.0.1">
+
+    <name>MobilePrinter</name>
+    <description>MobilePrinter Plugin</description>
+    <license>MIT</license>
+    <keywords>phonegap,printer</keywords>
+ 
+ 
+    <js-module src="www/mobileprinter.js" name="MobilePrinter">
+        <clobbers target="mobileprinter" />
+    </js-module>
+ 
+    <!-- android -->
+    <platform name="android">
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.BLUETOOTH"/>
+            <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+        </config-file>
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="MobilePrinter">
+                <param name="android-package" value="com.phonegap.plugins.mobileprinter"/>
+            </feature>
+        </config-file>
+        
+        <source-file src="src/android/MobilePrinter.java" target-dir="src/com/masnatacion/plugin/mobileprinter" />
+     </platform>          
+</plugin>
