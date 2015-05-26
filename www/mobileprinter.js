@@ -42,4 +42,4 @@ var mobileprinter = {
     }
 }
 
-module.exports = sendmail;
+module.exports = mobileprinter;
