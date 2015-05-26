@@ -190,17 +190,20 @@ public class MobilePrinter  extends CordovaPlugin
             callbackContext.error(e.getMessage());  
             return false;  
          }
+
          if (str1.equals("success")) {
             callbackContext.success(); 
             return true;
             //return new PluginResult(PluginResult.Status.OK, "Label Printed");
          }
 
-       }else{
-         callbackContext.error("Function not found"); 
+         callbackContext.error("Error: Printer not found"); 
          return false; 
+
        }
 
+       callbackContext.error("Function not found"); 
+       return false; 
 
  
   } 
