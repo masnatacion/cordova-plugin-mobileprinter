@@ -9,19 +9,15 @@ import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.util.Date;
 
-// import org.apache.cordova.api.Plugin;
-// import org.apache.cordova.api.PluginResult;
-import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.CallbackContext;
-import org.apache.cordova.PluginResult;
-
+import org.apache.cordova.api.Plugin;
+import org.apache.cordova.api.PluginResult;
 import org.json.JSONArray;
 
-public class MobilePrinter  extends CordovaPlugin 
+public class MobilePrinter  extends Plugin 
 {
-    public static final String PRINT_LABEL = "printLabel";
-    public static final String SUCCESS = "success";
-    static boolean busy = false;
+	  public static final String PRINT_LABEL = "printLabel";
+	  public static final String SUCCESS = "success";
+	  static boolean busy = false;
    
  
  
@@ -164,43 +160,44 @@ public class MobilePrinter  extends CordovaPlugin
        return "Print Error: " + error;
      }
    }
-                               JSONArray jsonArgs,  
 
-      
-   public PluginResult execute(String action, JSONArray paramJSONArray,  
-      CallbackContext callbackContext)
-   {
-     if (action.equals("printLabel"))
-     {
-       Log.d("MobilePrinter", "PrintLabel Function Called");
-       String str1;
-       try
+
+  public boolean execute(String action, JSONArray jsonArgs,  
+      CallbackContext callbackContext) throws JSONException {  
+ 
+       if (action.equals("printLabel"))
        {
-         String str2 = printraw(paramJSONArray.getString(0), paramJSONArray.getString(1));
-         str1 = str2;
+           Log.d("MobilePrinter", "PrintLabel Function Called");
+           String str1;
+         try
+         {
+             String str2 = printraw(jsonArgs.getString(0), jsonArgs.getString(1));
+             str1 = str2;
+         }
+         catch (Exception localException)
+         {
+           // for (;;)
+           // {
+           //   Log.d("MobilePrinter", localException.toString());
+           //   str1 = null;
+           // }
+            str1 = null;
+            callbackContext.error(e.getMessage());  
+            return false;  
+         }
+         if (str1.equals("success")) {
+            callbackContext.success(); 
+            return true;
+            //return new PluginResult(PluginResult.Status.OK, "Label Printed");
+         }
+
        }
-       catch (Exception localException)
-       {
-         // for (;;)
-         // {
-         //   Log.d("MobilePrinter", localException.toString());
-         //   str1 = null;
-         // }
-          str1 = null;
-          callbackContext.error(e.getMessage());  
-          return false;  
-       }
-       if (str1.equals("success")) {
-          callbackContext.success(); 
-          return true;
-         //return new PluginResult(PluginResult.Status.OK, "Label Printed");
-       }
-       callbackContext.error(str1); 
+
+       callbackContext.error("Function not found"); 
        return false; 
-       //return new PluginResult(PluginResult.Status.ERROR, str1);
-     }
-     callbackContext.error("Function not found"); 
-     return false; 
-   }
+ 
+  } 
+
+
 
 }
