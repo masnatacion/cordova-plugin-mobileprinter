@@ -34,11 +34,12 @@
 //   // PluginManager.addService('MobilePrinter', 'com.phonegap.plugins.mobileprinter');
 // });
 
+var exec = require('cordova/exec');
 
 var mobileprinter = {
 
     printLabel: function(successCallback, errorCallback, params){
-        cordova.exec(successCallback, errorCallback, 'MobilePrinter', 'printLabel', params);
+        exec(successCallback, errorCallback, 'MobilePrinter', 'printLabel', params);
     }
 }
 
