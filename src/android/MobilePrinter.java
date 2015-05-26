@@ -9,15 +9,20 @@ import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.util.Date;
 
-import org.apache.cordova.api.Plugin;
-import org.apache.cordova.api.PluginResult;
+// import org.apache.cordova.api.Plugin;
+// import org.apache.cordova.api.PluginResult;
+import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CallbackContext; 
+import org.apache.cordova.PluginResult;
+
+import org.json.JSONException;  
 import org.json.JSONArray;
 
-public class MobilePrinter  extends Plugin 
+public class MobilePrinter  extends CordovaPlugin 
 {
-	  public static final String PRINT_LABEL = "printLabel";
-	  public static final String SUCCESS = "success";
-	  static boolean busy = false;
+    public static final String PRINT_LABEL = "printLabel";
+    public static final String SUCCESS = "success";
+    static boolean busy = false;
    
  
  
