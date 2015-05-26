@@ -164,10 +164,12 @@ public class MobilePrinter  extends CordovaPlugin
        return "Print Error: " + error;
      }
    }
+                               JSONArray jsonArgs,  
 
-   public PluginResult execute(String paramString1, JSONArray paramJSONArray, String paramString2)
+      
+   public PluginResult execute(String action, JSONArray paramJSONArray,CallbackContext callbackContext)
    {
-     if (paramString1.equals("printLabel"))
+     if (action.equals("printLabel"))
      {
        Log.d("MobilePrinter", "PrintLabel Function Called");
        String str1;
@@ -178,18 +180,26 @@ public class MobilePrinter  extends CordovaPlugin
        }
        catch (Exception localException)
        {
-         for (;;)
-         {
-           Log.d("MobilePrinter", localException.toString());
-           str1 = null;
-         }
+         // for (;;)
+         // {
+         //   Log.d("MobilePrinter", localException.toString());
+         //   str1 = null;
+         // }
+          str1 = null;
+          callbackContext.error(e.getMessage());  
+          return false;  
        }
        if (str1.equals("success")) {
-         return new PluginResult(PluginResult.Status.OK, "Label Printed");
+          callbackContext.success(); 
+          return true;
+         //return new PluginResult(PluginResult.Status.OK, "Label Printed");
        }
-       return new PluginResult(PluginResult.Status.ERROR, str1);
+       callbackContext.error(str1); 
+       return false; 
+       //return new PluginResult(PluginResult.Status.ERROR, str1);
      }
-     return null;
+     callbackContext.error("Function not found"); 
+     return false; 
    }
 
 }
