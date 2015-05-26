@@ -28,6 +28,6 @@
             </feature>
         </config-file>
         
-        <source-file src="src/android/MobilePrinter.java" target-dir="src/com/masnatacion/plugin/mobileprinter" />
+        <source-file src="src/android/MobilePrinter.java" target-dir="src/com/phonegap/plugins/mobileprinter" />
      </platform>          
 </plugin>
